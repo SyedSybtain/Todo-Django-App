@@ -1,5 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id="table">
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>ToDo</th>
+        <th>Action</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ task }}</td>
+        <td>
+            <form method="POST">
+                {% csrf_token %}
+                <button name = 'del' value = {{ task.id }}>Done</input>
 
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+<hr>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="add">Submit</button>
+    </form>
+</div>
+<hr>
+<div>
+</div>
 {% endblock %}
